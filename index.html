@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Home Views and Floor Plans Search</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      padding-top: 50px;
+    }
+    .search-container {
+      margin-bottom: 30px;
+    }
+    .card {
+      margin-bottom: 20px;
+    }
+    .card img {
+      height: 200px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Search Bar -->
+    <div class="search-container">
+      <h2>Search for 3D Home Views and Floor Plans</h2>
+      <form id="searchForm">
+        <div class="input-group">
+          <input type="text" class="form-control" id="searchQuery" placeholder="Search for home views or floor plans (up to 5 stories)">
+          <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Results -->
+    <div id="results" class="row">
+      <!-- Example Floor Plans and 3D Views -->
+      <div class="col-md-4">
+        <div class="card">
+          <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Floor Plan 1">
+          <div class="card-body">
+            <h5 class="card-title">3D Home View - 3 Stories</h5>
+            <p class="card-text">Beautiful modern design for a 3-story house with all amenities.</p>
+            <a href="#" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Floor Plan 2">
+          <div class="card-body">
+            <h5 class="card-title">5-Story Luxury Home</h5>
+            <p class="card-text">A luxurious 5-story home with spacious rooms and a modern design.</p>
+            <a href="#" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Floor Plan 3">
+          <div class="card-body">
+            <h5 class="card-title">4-Story Family Home</h5>
+            <p class="card-text">A family-friendly home with 4 stories, including an open kitchen and living space.</p>
+            <a href="#" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 JS and Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <script>
+    // JavaScript to filter results based on the search query
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const query = document.getElementById('searchQuery').value.toLowerCase();
+      const results = document.getElementById('results');
+      const cards = results.querySelectorAll('.col-md-4');
+      let found = false;
+
+      cards.forEach(card => {
+        const title = card.querySelector('.card-title').textContent.toLowerCase();
+        const description = card.querySelector('.card-text').textContent.toLowerCase();
+
+        if (title.includes(query) || description.includes(query)) {
+          card.style.display = 'block';
+          found = true;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (!found) {
+        results.innerHTML = '<p>No results found. Please try a different search.</p>';
+      }
+    });
+  </script>
+</body>
+</html>
